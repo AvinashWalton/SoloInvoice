@@ -17,20 +17,21 @@
 
 | Feature | Details |
 |---|---|
-| 📄 **PDF Generation** | One-click download of gorgeous, professional A4 invoices |
+| 📄 **PDF Generation** | One-click PDF via browser's built-in print-to-PDF (zero dependency) |
 | 🔒 **100% Offline** | Works without internet. Your data never leaves your browser |
 | 💾 **LocalStorage Save** | Save multiple invoices and reload them anytime |
-| 🏢 **Business Profile** | Save your company info, logo, GSTIN, PAN once and reuse |
+| 🏢 **Business Profile** | Save your company info once — auto-loads every time |
 | 🖼️ **Logo Upload** | Add your company logo (PNG, JPG, SVG, max 2MB) |
+| ✍️ **Signature Upload** | Upload your handwritten signature image — appears on every invoice above the signatory name |
 | 📦 **Line Items** | Add unlimited services/products with qty, rate, auto-total |
 | 🧮 **Tax & Discount** | GST/tax %, discount %, shipping charges — all auto-calculated |
 | 💱 **Multi-Currency** | INR ₹, USD $, EUR €, GBP £, JPY ¥, AUD A$, AED د.إ |
 | 🏦 **Bank Details** | Bank name, A/C number, IFSC code, UPI ID on invoice |
-| 🖨️ **Print Ready** | Direct browser print support |
-| 📤 **Share Link** | Share app link via Web Share API |
-| 🎨 **Color Themes** | Pick accent colors for invoice branding |
+| 🖨️ **Print Ready** | Opens clean invoice-only print window — no form, no UI noise |
+| 📤 **Share Link** | Share app link via Web Share API or clipboard copy |
+| 🎨 **Color Themes** | Pick accent colors for your invoice branding |
 | 📱 **Responsive** | Works perfectly on mobile, tablet, and desktop |
-| ♿ **Accessible** | Semantic HTML, keyboard navigable |
+| 🔖 **Payment Stamp** | Auto PAID / UNPAID / OVERDUE / PENDING stamp on invoice |
 
 ---
 
@@ -43,11 +44,10 @@ Just visit 👉 [avinashwalton.github.io/SoloInvoice](https://avinashwalton.gith
 ```bash
 git clone https://github.com/AvinashWalton/SoloInvoice.git
 cd SoloInvoice
-# Just open index.html in any browser!
-open index.html
+open index.html   # Just open in any browser — no build step needed!
 ```
 
-No build step. No npm install. No dependencies to install. It's a single HTML file.
+No npm install. No build step. No dependencies. Single HTML file.
 
 ---
 
@@ -68,49 +68,52 @@ SoloInvoice/
 |---|---|
 | **HTML5** | Semantic structure, SEO meta tags, Open Graph |
 | **CSS3** | Custom properties, Grid, Flexbox, animations |
-| **Vanilla JS** | All logic — no frameworks, no dependencies |
-| **html2pdf.js** | Client-side PDF generation (loaded from CDN) |
+| **Vanilla JS** | All logic — zero frameworks, zero dependencies |
+| **Browser Print API** | Client-side PDF via print-to-PDF (no CDN needed) |
 | **localStorage** | Invoice and business data persistence |
+| **FileReader API** | Logo & signature image upload (base64) |
 
 Zero backend. Zero database. Zero cost.
 
 ---
 
-## 📸 Screenshots
+## 📸 How to Use
 
-> The app features:
-> - A clean, warm cream/ink color palette
-> - Live invoice preview as you type
-> - Tab-based navigation (Invoice / Business / Saved / Settings)
-> - Beautiful A4 PDF output with gradient divider, stamp, and bank details
+### Step 1 — Set Up Your Business Profile
+1. Click the **Business** tab
+2. Enter your company name, tagline, email, phone, address, GSTIN, PAN
+3. Upload your **company logo** (PNG/JPG/SVG)
+4. Upload your **handwritten signature image** (PNG with transparent background works best)
+5. Click **Save Business Info** — it auto-loads on every visit
+
+### Step 2 — Create an Invoice
+1. Go to the **Invoice** tab
+2. Fill in invoice number, date, due date
+3. Add client name, email, address, GSTIN
+4. Add line items with description, quantity, rate
+5. Set currency, tax %, discount % as needed
+6. Add bank/UPI payment details
+7. Add notes and payment terms
+
+### Step 3 — Download / Print
+- **Download PDF Invoice** → clean invoice window opens → select **"Save as PDF"** in print dialog → Save
+- **Print** → same clean window opens directly for printing
+- **Save Invoice** → saved to your browser's localStorage for future reference
 
 ---
 
-## 🔧 How to Use
+## 🖨️ PDF Download — How it Works
 
-1. **Go to the Business tab** → Enter your company name, logo, GSTIN, PAN, contact info → Save
-2. **Go to the Invoice tab** → Fill in client details, add line items
-3. **Set tax/discount/currency** as needed
-4. **Live preview** updates on the right in real time
-5. **Click Download PDF** → Beautiful A4 invoice downloads instantly
-6. Optionally **Save Invoice** to browser for future access
+SoloInvoice uses the browser's native **Print → Save as PDF** instead of a third-party library. This means:
+- ✅ Works 100% offline — no CDN required
+- ✅ No html2pdf or jsPDF dependency
+- ✅ Pixel-perfect A4 output with all colors preserved
+- ✅ Works on Chrome, Firefox, Edge, Safari
 
----
-
-## 🌍 SEO & Deployment
-
-The app is fully SEO-optimized with:
-- Descriptive `<title>` and `<meta description>`
-- Open Graph tags for social sharing
-- Twitter Card meta tags
-- Canonical URL
-- Semantic HTML structure
-- Mobile-responsive viewport
-
-**Deploy to GitHub Pages:**
-1. Push code to your `main` or `gh-pages` branch
-2. Go to repo Settings → Pages → Source: `main` / `/ (root)`
-3. Your app is live at `https://avinashwalton.github.io/SoloInvoice`
+**When the print dialog opens:**
+1. **Destination** → select `Save as PDF` or `Microsoft Print to PDF`
+2. **Layout** → `Portrait`
+3. Click **Save**
 
 ---
 
@@ -118,32 +121,26 @@ The app is fully SEO-optimized with:
 
 - [ ] QR code for UPI payment on invoice
 - [ ] Invoice email via mailto link
-- [ ] Multiple invoice templates
+- [ ] Multiple invoice templates (Classic, Modern, Minimal)
 - [ ] Dark mode
-- [ ] CSV export of invoice list
+- [ ] CSV export of saved invoice list
 - [ ] Recurring invoice support
-- [ ] PWA / installable offline app
+- [ ] PWA / installable as offline app
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
+Contributions are welcome!
 - 🐛 [Report bugs](https://github.com/AvinashWalton/SoloInvoice/issues)
 - 💡 [Request features](https://github.com/AvinashWalton/SoloInvoice/issues)
-- 🔧 Submit pull requests
-
-```bash
-# Fork the repo, make changes to index.html, submit a PR
-```
+- 🔧 Submit pull requests — just edit `index.html`
 
 ---
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
-Free to use, modify, and distribute.
+MIT License — see [LICENSE](LICENSE) for details. Free to use, modify, and distribute.
 
 ---
 
@@ -154,6 +151,8 @@ Free to use, modify, and distribute.
 [![YouTube](https://img.shields.io/badge/YouTube-@AvinashWalton-red?logo=youtube)](https://youtube.com/@AvinashWalton)
 [![Twitter](https://img.shields.io/badge/Twitter-@AvinashWalton-1DA1F2?logo=twitter)](https://twitter.com/AvinashWalton)
 [![Instagram](https://img.shields.io/badge/Instagram-@AvinashWalton-E4405F?logo=instagram)](https://instagram.com/AvinashWalton)
+[![Facebook](https://img.shields.io/badge/Facebook-AvinashWalton-1877F2?logo=facebook)](https://facebook.com/AvinashWalton)
+[![Threads](https://img.shields.io/badge/Threads-@AvinashWalton-000?logo=threads)](https://threads.net/@AvinashWalton)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-SonuKumarSuman-0077B5?logo=linkedin)](https://linkedin.com/in/SonuKumarSuman)
 [![GitHub](https://img.shields.io/badge/GitHub-AvinashWalton-181717?logo=github)](https://github.com/AvinashWalton)
 
@@ -163,14 +162,14 @@ Free to use, modify, and distribute.
 
 | Tool | Description |
 |---|---|
-| [FileFlux](https://avinashwalton.github.io/fileflux) | File conversion and management tool |
+| [FileFlux](https://avinashwalton.github.io/fileflux) | File conversion and management |
 | [AuthorPro](https://avinashwalton.github.io/AuthorPro) | Writing and authoring tool |
 | [DesiLang](https://avinashwalton.github.io/DesiLang) | Indian language utilities |
 | [TranscriptPro](https://avinashwalton.github.io/transcriptpro) | Transcript and subtitle tool |
 | [PromptVault Pro](https://avinashwalton.github.io/PromptVaultPro/) | AI prompt library |
 | [SanitizeOS](https://avinashwalton.github.io/SanitizeOS/) | System cleanup utility |
-| [PixelLocker](https://avinashwalton.github.io/PixelLocker/) | Image privacy tool |
+| [PixelLocker](https://avinashwalton.github.io/PixelLocker/) | Image privacy & security tool |
 
 ---
 
-<p align="center">Made with ❤️ in India · <strong>Avinash Walton</strong></p>
+<p align="center">Made with ❤️ in India &nbsp;·&nbsp; <strong>Avinash Walton</strong></p>
